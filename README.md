@@ -204,6 +204,21 @@ Azure/DigitalOcean-Guthaben) inkl. Begründung: siehe [`CLAUDE.md`](./CLAUDE.md)
 - Impressum und Datenschutzerklärung sind im Footer verlinkt (`/impressum`, `/datenschutz`,
   aktuell mit Platzhalterinhalten für das Demo-Projekt).
 
+### Bewusste Entscheidung: keine E-Mail-Bestätigung beim User-Login
+
+Supabase Auth verlangt im Standardzustand, dass Nutzer ihre E-Mail-Adresse per Klick auf einen
+Bestätigungslink verifizieren, bevor der erste Login klappt. Der dafür genutzte Mailversand ist im
+Free-Tier stark ratelimitiert und unzuverlässig (landet häufig im Spam) — unabhängig von Brevo, das
+ausschließlich für den Newsletter zuständig ist. Für dieses Projekt ist `mailer_autoconfirm` in den
+Supabase-Auth-Einstellungen deshalb bewusst aktiviert: Registrierung und Login funktionieren sofort,
+ohne dass ein zusätzlicher Mailversand für die Konto-Bestätigung aufgesetzt werden muss.
+
+**Trade-off:** Wer sich registriert, muss die angegebene E-Mail-Adresse nicht tatsächlich besitzen.
+Für den Shop-/Blog-Login einer kleinen Organisation (kein Zahlungsverkehr, keine sensiblen Daten im
+Nutzerkonto) ist das ein akzeptables Risiko. Erweiterungspunkt: `mailer_autoconfirm` in den
+Supabase-Auth-Einstellungen deaktivieren, sobald ein zuverlässiger Mailversand (z.B. über Brevo als
+Auth-SMTP-Provider) eingerichtet ist.
+
 ---
 
 ## Entwicklungsstand
