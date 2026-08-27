@@ -63,6 +63,7 @@ Begründung und geprüfte Alternativen: siehe [`CLAUDE.md`](./CLAUDE.md) Abschni
 5. Edge-Function-Secrets setzen (niemals ins Repo/Frontend):
    ```bash
    npx supabase secrets set BREVO_API_KEY=<dein-brevo-key>
+   npx supabase secrets set BREVO_SENDER_EMAIL=<deine-bei-brevo-verifizierte-absenderadresse>
    npx supabase secrets set SITE_URL=http://localhost:5173
    ```
    `SUPABASE_URL` und `SUPABASE_SERVICE_ROLE_KEY` setzt Supabase für Edge Functions automatisch.
@@ -93,7 +94,12 @@ npm run dev
 
 1. Account auf [brevo.com](https://www.brevo.com) anlegen (Free-Tier, keine Kreditkarte nötig).
 2. Absenderadresse verifizieren (Domain oder Single Sender), API-Key erzeugen.
-3. Den Key als Edge-Function-Secret setzen (siehe oben).
+3. Bei der Meldung "Nicht autorisierte IP-Adressen sind blockiert": die IP-Beschränkung
+   deaktivieren statt einzelne IPs einzutragen (Settings → SMTP & API → API Keys). Supabase Edge
+   Functions laufen auf serverloser Infrastruktur ohne feste, dokumentierte Absender-IP — eine
+   Allowlist ist damit nicht pflegbar. Der API-Key bleibt trotzdem geschützt, da er ausschließlich
+   als Edge-Function-Secret existiert und nie ins Frontend/Repo gelangt.
+4. Key und verifizierte Absenderadresse als Edge-Function-Secrets setzen (siehe oben).
 
 ### 5. Deployment auf Cloudflare Pages (Live-Betrieb)
 
