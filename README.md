@@ -77,7 +77,11 @@ Begründung und geprüfte Alternativen: siehe [`CLAUDE.md`](./CLAUDE.md) Abschni
 2. In der Supabase-Tabelle `profiles` die Zeile mit der eigenen `id` von `role = 'user'` auf
    `role = 'admin'` setzen (Supabase Studio → Table Editor, oder per SQL).
 
-### 3. Frontend lokal starten
+### 3. Frontend lokal starten (zum Entwickeln/Testen)
+
+`npm run dev` startet nur einen Entwicklungsserver auf deinem eigenen Rechner
+(`localhost:5173`) — mit Hot-Reload, für schnelles Iterieren beim Programmieren. Das ist
+**nicht** die Live-Seite; die entsteht erst durch das Deployment in Schritt 5.
 
 ```bash
 npm install
@@ -90,6 +94,32 @@ npm run dev
 1. Account auf [brevo.com](https://www.brevo.com) anlegen (Free-Tier, keine Kreditkarte nötig).
 2. Absenderadresse verifizieren (Domain oder Single Sender), API-Key erzeugen.
 3. Den Key als Edge-Function-Secret setzen (siehe oben).
+
+### 5. Deployment auf Cloudflare Pages (Live-Betrieb)
+
+Das Frontend ist eine statische SPA (`npm run build` erzeugt reines HTML/JS/CSS im Ordner
+`dist/`) — Cloudflare Pages liefert diese Dateien weltweit über ein CDN aus. Das ist der
+tatsächliche "Server im Netz", den Besucher unter der Live-URL aufrufen.
+
+1. Account auf [pages.cloudflare.com](https://pages.cloudflare.com) anlegen (Free-Tier, keine
+   Kreditkarte nötig).
+2. Neues Projekt anlegen → "Connect to Git" → dieses GitHub-Repository auswählen.
+3. Build-Einstellungen:
+   | Feld | Wert |
+   |---|---|
+   | Framework preset | Vite |
+   | Build command | `npm run build` |
+   | Build output directory | `dist` |
+4. Umgebungsvariablen im Cloudflare-Pages-Projekt eintragen (Settings → Environment variables):
+   `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — dieselben Werte wie in der lokalen `.env`.
+5. Deploy auslösen. Jeder Push auf `main` löst danach automatisch ein neues Deployment aus.
+6. Die von Cloudflare vergebene `*.pages.dev`-URL oben bei "Live-URL" eintragen.
+7. Das Edge-Function-Secret `SITE_URL` (Schritt 1.5) von `http://localhost:5173` auf die
+   echte `*.pages.dev`-URL umstellen, sonst zeigen die Bestätigungs-/Abmeldelinks aus den
+   Newsletter-Mails ins Leere:
+   ```bash
+   npx supabase secrets set SITE_URL=https://<dein-projekt>.pages.dev
+   ```
 
 ---
 
