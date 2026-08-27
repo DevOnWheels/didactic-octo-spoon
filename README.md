@@ -235,7 +235,8 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Öffentlicher Bereich: Landing Page, Blog, Shop, Warenkorb, Kauf-Bestätigung
 - [x] Newsletter: Double-Opt-In-Anmeldung, Bestätigung, Abmeldung (Edge Functions)
 - [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand
-- [ ] Supabase-/Brevo-/Cloudflare-Accounts real angelegt und Keys eingetragen
-- [ ] Deployment auf Cloudflare Pages, Live-URL
+- [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet
+- [x] Brevo-Account: Newsletter-Anmeldung, Bestätigung und Versand live getestet
+- [ ] Cloudflare-Pages-Account, Deployment, Live-URL
 - [ ] GitHub-Actions-Secrets für Keep-Alive-Cron gesetzt
 - [ ] `REFLEXION.md`
