@@ -1,0 +1,16 @@
+project_id = "lehmglueck"
+
+# subscribe: wird vom öffentlichen Newsletter-Formular ohne Login aufgerufen.
+[functions.subscribe]
+verify_jwt = false
+
+# confirm-subscriber / unsubscribe: werden per Klick auf einen Mail-Link aufgerufen (GET, kein JWT).
+[functions.confirm-subscriber]
+verify_jwt = false
+
+[functions.unsubscribe]
+verify_jwt = false
+
+# send-newsletter prüft die Admin-Rolle selbst anhand des mitgeschickten Bearer-Tokens.
+[functions.send-newsletter]
+verify_jwt = true
