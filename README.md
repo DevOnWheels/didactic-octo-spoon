@@ -257,5 +257,5 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Brevo-Account: Newsletter-Anmeldung, Bestätigung und Versand live getestet
 - [x] Cloudflare-Pages-Account, Deployment, Live-URL (https://didactic-octo-spoon.pages.dev)
 - [ ] Custom Domain `www.labschis.biz` verknüpft
-- [ ] GitHub-Actions-Secrets für Keep-Alive-Cron gesetzt
+- [x] GitHub-Actions-Secrets für Keep-Alive-Cron gesetzt, manueller Testlauf erfolgreich
 - [ ] `REFLEXION.md`
