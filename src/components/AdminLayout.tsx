@@ -19,6 +19,9 @@ export function AdminLayout() {
         <NavLink to="/admin/newsletter" className={linkClass}>
           Newsletter
         </NavLink>
+        <NavLink to="/admin/nutzer" className={linkClass}>
+          Nutzer
+        </NavLink>
       </nav>
       <Outlet />
     </div>

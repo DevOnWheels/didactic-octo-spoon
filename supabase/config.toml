@@ -11,6 +11,9 @@ verify_jwt = false
 [functions.unsubscribe]
 verify_jwt = false
 
-# send-newsletter prüft die Admin-Rolle selbst anhand des mitgeschickten Bearer-Tokens.
+# send-newsletter / admin-users prüfen die Admin-Rolle selbst anhand des mitgeschickten Bearer-Tokens.
 [functions.send-newsletter]
+verify_jwt = true
+
+[functions.admin-users]
 verify_jwt = true
