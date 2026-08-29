@@ -4,7 +4,7 @@ Abschlussprojekt: vollständige Webpräsenz für eine kleine Organisation (CMS, 
 Shop-Funktion, User-Login, Admin-Dashboard). Demo-Organisation: eine fiktive Keramikwerkstatt.
 Die ursprüngliche Aufgabenstellung steht in [`AUFGABENSTELLUNG.md`](./AUFGABENSTELLUNG.md).
 
-**Live-URL:** _folgt nach dem ersten Deployment auf Cloudflare Pages._
+**Live-URL:** https://didactic-octo-spoon.pages.dev (Custom Domain `www.labschis.app` folgt)
 
 ---
 
@@ -107,15 +107,27 @@ Das Frontend ist eine statische SPA (`npm run build` erzeugt reines HTML/JS/CSS 
 `dist/`) — Cloudflare Pages liefert diese Dateien weltweit über ein CDN aus. Das ist der
 tatsächliche "Server im Netz", den Besucher unter der Live-URL aufrufen.
 
-1. Account auf [pages.cloudflare.com](https://pages.cloudflare.com) anlegen (Free-Tier, keine
-   Kreditkarte nötig).
-2. Neues Projekt anlegen → "Connect to Git" → dieses GitHub-Repository auswählen.
-3. Build-Einstellungen:
+1. Account auf [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up) anlegen
+   (Free-Tier, keine Kreditkarte nötig).
+2. Im Dashboard **Workers & Pages** → **Create application**. Cloudflare hat sein UI 2026 auf
+   ein vereinheitlichtes "Workers"-Produkt umgestellt; der Standard-Flow ("Continue with GitHub")
+   klont das Repo einmalig in ein von Cloudflare verwaltetes Kopie-Repo und ist **nicht** die
+   fortlaufende Git-Anbindung, die wir wollen. Stattdessen ganz unten auf der Seite
+   **"Looking to deploy Pages? Get started"** klicken → das ist der klassische Pages-Flow mit
+   echter Continuous-Deployment-Anbindung an das bestehende Repo.
+3. GitHub-Account verbinden (ggf. Repository-Zugriff für die Cloudflare-Pages-App auf GitHub
+   erweitern), Repository auswählen, "Begin setup". Build-Einstellungen:
    | Feld | Wert |
    |---|---|
-   | Framework preset | Vite |
+   | Framework preset | None |
    | Build command | `npm run build` |
    | Build output directory | `dist` |
+   | Root directory (advanced) | leer / `/` (Repo-Root, wo `package.json` liegt) |
+
+   Klassisches Pages liefert `dist/` direkt aus (kein `wrangler.toml`/`wrangler.jsonc` nötig).
+   Für clientseitiges Routing (React Router) sorgt stattdessen
+   [`public/_redirects`](./public/_redirects) (`/* /index.html 200`) dafür, dass z.B.
+   `/blog/mein-artikel` bei direktem Aufruf nicht 404 wirft.
 4. Umgebungsvariablen im Cloudflare-Pages-Projekt eintragen (Settings → Environment variables):
    `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` — dieselben Werte wie in der lokalen `.env`.
 5. Deploy auslösen. Jeder Push auf `main` löst danach automatisch ein neues Deployment aus.
@@ -237,6 +249,7 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand
 - [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet
 - [x] Brevo-Account: Newsletter-Anmeldung, Bestätigung und Versand live getestet
-- [ ] Cloudflare-Pages-Account, Deployment, Live-URL
+- [x] Cloudflare-Pages-Account, Deployment, Live-URL (https://didactic-octo-spoon.pages.dev)
+- [ ] Custom Domain `www.labschis.app` verknüpft
 - [ ] GitHub-Actions-Secrets für Keep-Alive-Cron gesetzt
 - [ ] `REFLEXION.md`
