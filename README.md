@@ -252,7 +252,9 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Auth (Registrierung/Login/Logout), Admin-Rollenprüfung serverseitig
 - [x] Öffentlicher Bereich: Landing Page, Blog, Shop, Warenkorb, Kauf-Bestätigung
 - [x] Newsletter: Double-Opt-In-Anmeldung, Bestätigung, Abmeldung (Edge Functions)
-- [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand
+- [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand — alles live getestet
+- [x] Warenkorb & Kauf-Bestätigung (Gast-Bestellung) live getestet
+- [x] Newsletter-Abmeldung live getestet
 - [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet
 - [x] Brevo-Account: Newsletter-Anmeldung, Bestätigung und Versand live getestet
 - [x] Cloudflare-Pages-Account, Deployment, Live-URL (https://didactic-octo-spoon.pages.dev)
