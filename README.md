@@ -4,7 +4,7 @@ Abschlussprojekt: vollständige Webpräsenz für eine kleine Organisation (CMS, 
 Shop-Funktion, User-Login, Admin-Dashboard). Demo-Organisation: eine fiktive Keramikwerkstatt.
 Die ursprüngliche Aufgabenstellung steht in [`AUFGABENSTELLUNG.md`](./AUFGABENSTELLUNG.md).
 
-**Live-URL:** https://didactic-octo-spoon.pages.dev (Custom Domain `www.labschis.app` folgt)
+**Live-URL:** https://didactic-octo-spoon.pages.dev (Custom Domain `www.labschis.biz` folgt)
 
 ---
 
@@ -184,8 +184,14 @@ RLS vollständig und bleibt deshalb ausschließlich in den Edge-Function-Secrets
 | Cloudflare Pages | 0 € |
 | Supabase Free | 0 € |
 | Brevo Free (300 Mails/Tag) | 0 € |
-| Domain (.de, netcup/INWX) | ca. 5 € |
-| **Gesamt** | **≈ 5 € / Jahr**, deutlich unter der 24-€-Grenze |
+| Domain (`labschis.biz`) | 0 € — Inklusiv-Domain im bereits vorhandenen Hosting-Paket |
+| **Gesamt** | **0 € / Jahr**, deutlich unter der 24-€-Grenze |
+
+Ursprünglich war laut CLAUDE.md §3 eine eigens gekaufte `.de`-Domain (~5 €/Jahr bei netcup/INWX)
+vorgesehen. Stattdessen wird eine `.biz`-Domain genutzt, die im bereits bestehenden Hosting-Paket
+des Nutzers als Inklusiv-Domain kostenlos enthalten ist — für dieses Demo-Projekt ohne echten
+zahlenden Kunden ein sinnvoller Kompromiss. Für eine echte Organisation ohne eigenes Hosting-Paket
+bliebe die ursprüngliche Kalkulation (eigene `.de`-Domain, ~5 €/Jahr) der realistischere Ansatz.
 
 Geprüfte und bewusst verworfene Alternativen (WordPress+WooCommerce, Vercel, Firebase, Mailchimp,
 Azure/DigitalOcean-Guthaben) inkl. Begründung: siehe [`CLAUDE.md`](./CLAUDE.md) Abschnitt 3.
@@ -250,6 +256,6 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet
 - [x] Brevo-Account: Newsletter-Anmeldung, Bestätigung und Versand live getestet
 - [x] Cloudflare-Pages-Account, Deployment, Live-URL (https://didactic-octo-spoon.pages.dev)
-- [ ] Custom Domain `www.labschis.app` verknüpft
+- [ ] Custom Domain `www.labschis.biz` verknüpft
 - [ ] GitHub-Actions-Secrets für Keep-Alive-Cron gesetzt
 - [ ] `REFLEXION.md`
