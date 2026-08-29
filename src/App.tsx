@@ -19,6 +19,7 @@ import { NewsletterBestaetigung } from './pages/NewsletterBestaetigung'
 import { NewsletterAbmeldung } from './pages/NewsletterAbmeldung'
 import { Dashboard } from './pages/admin/Dashboard'
 import { AdminPosts } from './pages/admin/Posts'
+import { AdminProducts } from './pages/admin/Products'
 import { AdminNewsletter } from './pages/admin/Newsletter'
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
                 <Route element={<AdminLayout />}>
                   <Route index element={<Dashboard />} />
                   <Route path="beitraege" element={<AdminPosts />} />
+                  <Route path="produkte" element={<AdminProducts />} />
                   <Route path="newsletter" element={<AdminNewsletter />} />
                 </Route>
               </Route>

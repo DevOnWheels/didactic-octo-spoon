@@ -253,6 +253,7 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Öffentlicher Bereich: Landing Page, Blog, Shop, Warenkorb, Kauf-Bestätigung
 - [x] Newsletter: Double-Opt-In-Anmeldung, Bestätigung, Abmeldung (Edge Functions)
 - [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand — alles live getestet
+- [ ] Admin: Beiträge bearbeiten, Produkte anlegen/bearbeiten/löschen (inkl. Bild-Upload) — Erweiterung über den ursprünglichen Scope hinaus, Code steht, noch nicht live getestet
 - [x] Warenkorb & Kauf-Bestätigung (Gast-Bestellung) live getestet
 - [x] Newsletter-Abmeldung live getestet
 - [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet

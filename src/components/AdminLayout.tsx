@@ -13,6 +13,9 @@ export function AdminLayout() {
         <NavLink to="/admin/beitraege" className={linkClass}>
           Beiträge
         </NavLink>
+        <NavLink to="/admin/produkte" className={linkClass}>
+          Produkte
+        </NavLink>
         <NavLink to="/admin/newsletter" className={linkClass}>
           Newsletter
         </NavLink>

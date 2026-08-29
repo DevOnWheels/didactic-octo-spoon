@@ -139,7 +139,10 @@ Dashboard klicken. Ohne das ist das Projekt nicht reproduzierbar und die Doku ni
 ### Subtask 2 — Admin-Dashboard unter `/admin`
 - Protected Route, Zugriff nur nach Login **und** Admin-Rolle
 - Kennzahlen: Abonnentenzahl, Anzahl Beiträge, Anzahl Produkte
-- Beiträge anlegen und löschen, inkl. Bild-Upload nach Supabase Storage
+- Beiträge anlegen, bearbeiten und löschen, inkl. Bild-Upload nach Supabase Storage
+- Produkte anlegen, bearbeiten und löschen, inkl. Bild-Upload nach Supabase Storage
+  (nachträglich ergänzt am 29.08.2026 — ursprünglich nur öffentliche Produktanzeige geplant,
+  Produktpflege lief zunächst nur über Seed-Daten/Supabase Studio)
 - Newsletter verfassen und an bestätigte Abonnenten versenden
 
 ### Ausdrücklich außerhalb des Scopes
