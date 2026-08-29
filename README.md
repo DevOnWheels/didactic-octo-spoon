@@ -150,7 +150,7 @@ tatsächliche "Server im Netz", den Besucher unter der Live-URL aufrufen.
 | `products` | Shop-Artikel |
 | `subscribers` | Newsletter-Abonnenten mit Double-Opt-In (`confirmed`, `confirm_token`) |
 | `newsletters` | Versandhistorie |
-| `orders` | Protokoll des "Kauf"-Klicks — keine Zahlung, kein Status-Workflow |
+| `orders` | Protokoll des "Kauf"-Klicks — keine Zahlung, kein Status-Workflow. `user_id` steht bei Gast-Bestellungen und bei gelöschten Konten auf `null` (`ON DELETE SET NULL`) |
 | `ping` | Nur für den Keep-Alive-Cron, siehe unten |
 
 Migrationen liegen unter [`supabase/migrations`](./supabase/migrations), Demo-Daten unter
@@ -227,6 +227,10 @@ Azure/DigitalOcean-Guthaben) inkl. Begründung: siehe [`CLAUDE.md`](./CLAUDE.md)
 - Datenhaltung in der EU (Supabase Frankfurt, Brevo Frankreich).
 - Impressum und Datenschutzerklärung sind im Footer verlinkt (`/impressum`, `/datenschutz`,
   aktuell mit Platzhalterinhalten für das Demo-Projekt).
+- Admin-Nutzerverwaltung (`/admin/nutzer`, Passwort setzen/Konto löschen) läuft über die Edge
+  Function `admin-users` mit dem `service_role`-Key — Admin-Rolle wird dabei serverseitig aus dem
+  Bearer-Token geprüft, nicht dem Client vertraut. Admins können ihr eigenes Konto darüber nicht
+  löschen (verhindert versehentliches Aussperren).
 
 ### Bewusste Entscheidung: keine E-Mail-Bestätigung beim User-Login
 
@@ -253,7 +257,8 @@ Auth-SMTP-Provider) eingerichtet ist.
 - [x] Öffentlicher Bereich: Landing Page, Blog, Shop, Warenkorb, Kauf-Bestätigung
 - [x] Newsletter: Double-Opt-In-Anmeldung, Bestätigung, Abmeldung (Edge Functions)
 - [x] Admin-Dashboard: Statistiken, Beiträge (inkl. Bild-Upload), Newsletter-Versand — alles live getestet
-- [ ] Admin: Beiträge bearbeiten, Produkte anlegen/bearbeiten/löschen (inkl. Bild-Upload) — Erweiterung über den ursprünglichen Scope hinaus, Code steht, noch nicht live getestet
+- [x] Admin: Beiträge bearbeiten, Produkte anlegen (inkl. Bild-Upload) — live getestet; Produkte bearbeiten/löschen noch nicht einzeln getestet
+- [ ] Admin: Nutzerverwaltung (Liste, Passwort setzen, Konto löschen) — Code steht, noch nicht live getestet
 - [x] Warenkorb & Kauf-Bestätigung (Gast-Bestellung) live getestet
 - [x] Newsletter-Abmeldung live getestet
 - [x] Supabase-Account: Migrationen + Seed-Daten live eingespielt, Admin-Account eingerichtet
