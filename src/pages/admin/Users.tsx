@@ -94,49 +94,62 @@ export function AdminUsers() {
     }
   }
 
-  if (loading) return <p className="text-stone-500">Lädt…</p>
+  if (loading) return <p className="text-ink-500">Lädt…</p>
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-medium text-stone-900">Nutzerkonten</h2>
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {message && <p className="text-sm text-green-700">{message}</p>}
-      <div className="flex flex-col divide-y divide-stone-200 rounded-lg border border-stone-200 bg-white">
+      <h2 className="font-bold text-ink-900">Nutzerkonten</h2>
+      {error && (
+        <p role="alert" className="text-sm text-red-700">
+          {error}
+        </p>
+      )}
+      {message && (
+        <p role="status" className="text-sm font-bold text-glaze-700">
+          {message}
+        </p>
+      )}
+      <div className="flex flex-col divide-y divide-ink-100 border-2 border-ink-100 bg-white">
         {users.map((u) => {
           const isSelf = u.id === currentUser?.id
           const busy = busyUserId === u.id
+          const pwdFieldId = `pwd-${u.id}`
           return (
             <div key={u.id} className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-medium text-stone-900">
+                <p className="font-bold text-ink-900">
                   {u.email}{' '}
                   {u.role === 'admin' && (
-                    <span className="ml-1 rounded bg-amber-100 px-1.5 py-0.5 text-xs text-amber-800">
+                    <span className="ml-1 bg-clay-100 px-1.5 py-0.5 text-xs font-bold text-clay-800">
                       Admin
                     </span>
                   )}
                   {isSelf && (
-                    <span className="ml-1 rounded bg-stone-200 px-1.5 py-0.5 text-xs text-stone-600">
+                    <span className="ml-1 bg-ink-200 px-1.5 py-0.5 text-xs font-bold text-ink-700">
                       Du
                     </span>
                   )}
                 </p>
-                <p className="text-xs text-stone-500">
+                <p className="text-xs text-ink-500">
                   {u.display_name} · registriert am {new Date(u.created_at).toLocaleDateString('de-DE')}
                 </p>
               </div>
               <div className="flex items-center gap-2">
+                <label htmlFor={pwdFieldId} className="sr-only">
+                  Neues Passwort für {u.email}
+                </label>
                 <input
+                  id={pwdFieldId}
                   type="text"
                   placeholder="Neues Passwort"
                   value={passwordDrafts[u.id] ?? ''}
                   onChange={(e) => setPasswordDrafts((prev) => ({ ...prev, [u.id]: e.target.value }))}
-                  className="w-40 rounded-md border border-stone-300 px-2 py-1.5 text-sm"
+                  className="w-40 border-2 border-ink-300 px-2 py-1.5 text-sm focus:border-clay-600 focus:outline-none"
                 />
                 <button
                   onClick={() => handleSetPassword(u.id)}
                   disabled={busy}
-                  className="rounded-md border border-stone-300 px-3 py-1.5 text-sm text-stone-700 hover:bg-stone-100 disabled:opacity-60"
+                  className="border-2 border-ink-300 px-3 py-1.5 text-sm font-bold text-ink-700 hover:bg-ink-100 disabled:opacity-60"
                 >
                   Setzen
                 </button>
@@ -144,7 +157,7 @@ export function AdminUsers() {
                   onClick={() => handleDelete(u)}
                   disabled={busy || isSelf}
                   title={isSelf ? 'Eigenes Konto kann hier nicht gelöscht werden' : undefined}
-                  className="rounded-md px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 disabled:opacity-40"
+                  className="px-3 py-1.5 text-sm font-bold text-red-700 hover:bg-red-50 disabled:opacity-40"
                 >
                   Löschen
                 </button>

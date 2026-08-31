@@ -115,60 +115,82 @@ export function AdminProducts() {
 
   return (
     <div className="flex flex-col gap-8">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-lg border border-stone-200 bg-white p-5">
-        <h2 className="font-medium text-stone-900">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 border-2 border-ink-100 bg-white p-5">
+        <h2 className="font-bold text-ink-900">
           {editingId ? 'Produkt bearbeiten' : 'Neues Produkt anlegen'}
         </h2>
-        <input
-          type="text"
-          required
-          placeholder="Name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value, slug: slugify(e.target.value) })}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-        />
-        <input
-          type="text"
-          required
-          placeholder="slug"
-          value={form.slug}
-          onChange={(e) => setForm({ ...form, slug: e.target.value })}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-        />
-        <textarea
-          required
-          placeholder="Beschreibung"
-          value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-          rows={3}
-        />
-        <input
-          type="text"
-          required
-          inputMode="decimal"
-          placeholder="Preis in € (z.B. 18,90)"
-          value={form.price}
-          onChange={(e) => setForm({ ...form, price: e.target.value })}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-        />
+        <div className="flex flex-col gap-1">
+          <label htmlFor="product-name" className="text-sm font-bold text-ink-800">
+            Name
+          </label>
+          <input
+            id="product-name"
+            type="text"
+            required
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value, slug: slugify(e.target.value) })}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="product-slug" className="text-sm font-bold text-ink-800">
+            Slug (URL)
+          </label>
+          <input
+            id="product-slug"
+            type="text"
+            required
+            value={form.slug}
+            onChange={(e) => setForm({ ...form, slug: e.target.value })}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="product-description" className="text-sm font-bold text-ink-800">
+            Beschreibung
+          </label>
+          <textarea
+            id="product-description"
+            required
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+            rows={3}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="product-price" className="text-sm font-bold text-ink-800">
+            Preis in € (z.B. 18,90)
+          </label>
+          <input
+            id="product-price"
+            type="text"
+            required
+            inputMode="decimal"
+            value={form.price}
+            onChange={(e) => setForm({ ...form, price: e.target.value })}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
         {editingId && existingImagePath && !file && (
-          <div className="flex items-center gap-2 text-sm text-stone-600">
-            <img
-              src={publicImageUrl(existingImagePath) ?? undefined}
-              alt=""
-              className="h-12 w-12 rounded object-cover"
-            />
+          <div className="flex items-center gap-2 text-sm text-ink-700">
+            <img src={publicImageUrl(existingImagePath) ?? undefined} alt="" className="h-12 w-12 object-cover" />
             Aktuelles Bild (Datei wählen, um es zu ersetzen)
           </div>
         )}
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-          className="text-sm"
-        />
-        <label className="flex items-center gap-2 text-sm text-stone-700">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="product-image" className="text-sm font-bold text-ink-800">
+            Bild {editingId ? '(optional)' : ''}
+          </label>
+          <input
+            id="product-image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            className="text-sm"
+          />
+        </div>
+        <label className="flex items-center gap-2 text-sm font-bold text-ink-800">
           <input
             type="checkbox"
             checked={form.active}
@@ -176,12 +198,16 @@ export function AdminProducts() {
           />
           Im Shop sichtbar
         </label>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && (
+          <p role="alert" className="text-sm text-red-700">
+            {error}
+          </p>
+        )}
         <div className="flex gap-2">
           <button
             type="submit"
             disabled={saving}
-            className="self-start rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+            className="self-start bg-clay-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-clay-800 disabled:opacity-60"
           >
             {saving ? 'Speichert…' : editingId ? 'Änderungen speichern' : 'Produkt speichern'}
           </button>
@@ -189,7 +215,7 @@ export function AdminProducts() {
             <button
               type="button"
               onClick={cancelEdit}
-              className="self-start rounded-md border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-100"
+              className="self-start border-2 border-ink-300 px-4 py-2 text-sm font-bold text-ink-700 hover:bg-ink-100"
             >
               Abbrechen
             </button>
@@ -198,29 +224,27 @@ export function AdminProducts() {
       </form>
 
       <div>
-        <h2 className="mb-3 font-medium text-stone-900">Alle Produkte</h2>
+        <h2 className="mb-3 font-bold text-ink-900">Alle Produkte</h2>
         {loading ? (
-          <p className="text-stone-500">Lädt…</p>
+          <p className="text-ink-500">Lädt…</p>
         ) : (
-          <div className="flex flex-col divide-y divide-stone-200 rounded-lg border border-stone-200 bg-white">
+          <div className="flex flex-col divide-y divide-ink-100 border-2 border-ink-100 bg-white">
             {products.map((product) => {
               const imageUrl = publicImageUrl(product.image_path)
               return (
                 <div key={product.id} className="flex items-center justify-between gap-4 p-4">
                   <div className="flex items-center gap-3">
-                    {imageUrl && (
-                      <img src={imageUrl} alt="" className="h-12 w-12 rounded object-cover" />
-                    )}
+                    {imageUrl && <img src={imageUrl} alt="" className="h-12 w-12 object-cover" />}
                     <div>
-                      <p className="font-medium text-stone-900">
+                      <p className="font-bold text-ink-900">
                         {product.name}{' '}
                         {!product.active && (
-                          <span className="ml-1 rounded bg-stone-200 px-1.5 py-0.5 text-xs text-stone-600">
+                          <span className="ml-1 bg-ink-200 px-1.5 py-0.5 text-xs font-bold text-ink-700">
                             Ausgeblendet
                           </span>
                         )}
                       </p>
-                      <p className="text-xs text-stone-500">
+                      <p className="text-xs text-ink-500">
                         /{product.slug} · {formatPrice(product.price_cents)}
                       </p>
                     </div>
@@ -228,13 +252,13 @@ export function AdminProducts() {
                   <div className="flex gap-3">
                     <button
                       onClick={() => startEdit(product)}
-                      className="text-sm text-amber-700 hover:underline"
+                      className="text-sm font-bold text-clay-700 hover:underline"
                     >
                       Bearbeiten
                     </button>
                     <button
                       onClick={() => handleDelete(product)}
-                      className="text-sm text-stone-400 hover:text-red-600"
+                      className="text-sm font-bold text-ink-500 hover:text-red-700"
                     >
                       Löschen
                     </button>

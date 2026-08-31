@@ -12,9 +12,9 @@ export function NewsletterAbmeldung() {
 
   return (
     <div className="flex flex-col gap-3">
-      <h1 className="text-2xl font-semibold text-stone-900">Newsletter-Abmeldung</h1>
-      <p className="text-stone-600">{MESSAGES[status] ?? MESSAGES.fehler}</p>
-      <Link to="/" className="text-amber-700 hover:underline">
+      <h1 className="text-2xl font-bold text-ink-900">Newsletter-Abmeldung</h1>
+      <p className="text-ink-600">{MESSAGES[status] ?? MESSAGES.fehler}</p>
+      <Link to="/" className="text-clay-700 hover:underline">
         Zur Startseite
       </Link>
     </div>

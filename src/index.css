@@ -1,1 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+
+  /* Warmes Orange als Markenfarbe, angelehnt an das Referenzdesign — Werte so gewählt, dass
+     clay-700 auf Weiß mind. WCAG-AA-Kontrast (4.5:1) für Fließtext/Buttons erreicht. */
+  --color-clay-50: #fff5ea;
+  --color-clay-100: #ffe6c7;
+  --color-clay-200: #ffcb8c;
+  --color-clay-300: #ffab52;
+  --color-clay-400: #fb8c2b;
+  --color-clay-500: #e56f10;
+  --color-clay-600: #c25a09;
+  --color-clay-700: #9c480c;
+  --color-clay-800: #7e3b10;
+  --color-clay-900: #67320f;
+
+  /* Glasur-Grün als leiser Zweitakzent. */
+  --color-glaze-50: #f3f6ef;
+  --color-glaze-100: #e3ead9;
+  --color-glaze-400: #9bab7f;
+  --color-glaze-600: #6f8452;
+  --color-glaze-700: #59693f;
+
+  /* Warme Neutrale statt reinem Schwarz/Weiß — ink-900 auf Weiß liegt bei ca. 15:1 Kontrast. */
+  --color-ink-50: #faf8f6;
+  --color-ink-100: #f1ede8;
+  --color-ink-200: #e2dbd2;
+  --color-ink-300: #c9beb0;
+  --color-ink-400: #a3937f;
+  --color-ink-500: #7d6c5a;
+  --color-ink-600: #5f5142;
+  --color-ink-700: #493e33;
+  --color-ink-800: #362e26;
+  --color-ink-900: #251f1a;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Sichtbarer, kräftiger Fokusring für Tastaturnavigation (WCAG 2.4.7) — ersetzt den
+   browserabhängigen Default durch etwas, das auf jedem Hintergrund erkennbar bleibt. */
+:focus-visible {
+  outline: 3px solid var(--color-clay-600);
+  outline-offset: 2px;
+}

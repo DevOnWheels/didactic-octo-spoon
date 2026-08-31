@@ -31,50 +31,76 @@ export function Register() {
   }
 
   if (success) {
-    return <p className="text-stone-600">Konto erstellt. Du wirst weitergeleitet…</p>
+    return (
+      <p role="status" className="text-ink-700">
+        Konto erstellt. Du wirst weitergeleitet…
+      </p>
+    )
   }
 
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-4">
-      <h1 className="text-2xl font-semibold text-stone-900">Registrieren</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
-          type="text"
-          required
-          placeholder="Anzeigename"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
-        />
-        <input
-          type="email"
-          required
-          placeholder="E-Mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
-        />
-        <input
-          type="password"
-          required
-          minLength={6}
-          placeholder="Passwort (mind. 6 Zeichen)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
-        />
-        {error && <p className="text-sm text-red-600">{error}</p>}
+    <div className="mx-auto flex max-w-sm flex-col gap-5 border-2 border-ink-100 bg-white p-8">
+      <h1 className="text-2xl font-bold text-ink-900">Registrieren</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="register-name" className="text-sm font-bold text-ink-800">
+            Anzeigename
+          </label>
+          <input
+            id="register-name"
+            type="text"
+            required
+            autoComplete="nickname"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            className="border-2 border-ink-300 px-3.5 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="register-email" className="text-sm font-bold text-ink-800">
+            E-Mail
+          </label>
+          <input
+            id="register-email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border-2 border-ink-300 px-3.5 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="register-password" className="text-sm font-bold text-ink-800">
+            Passwort (mind. 6 Zeichen)
+          </label>
+          <input
+            id="register-password"
+            type="password"
+            required
+            minLength={6}
+            autoComplete="new-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border-2 border-ink-300 px-3.5 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        {error && (
+          <p role="alert" className="text-sm text-red-700">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+          className="bg-clay-700 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
         >
           {submitting ? 'Erstellt Konto…' : 'Registrieren'}
         </button>
       </form>
-      <p className="text-sm text-stone-600">
+      <p className="text-sm text-ink-700">
         Schon ein Konto?{' '}
-        <Link to="/login" className="text-amber-700 hover:underline">
+        <Link to="/login" className="font-bold text-clay-700 hover:underline">
           Anmelden
         </Link>
       </p>

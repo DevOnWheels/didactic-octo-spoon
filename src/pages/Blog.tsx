@@ -19,21 +19,23 @@ export function Blog() {
       })
   }, [])
 
-  if (loading) return <p className="text-stone-500">Lädt…</p>
+  if (loading) return <p className="text-ink-500">Lädt…</p>
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold text-stone-900">Neuigkeiten</h1>
-      {posts.length === 0 && <p className="text-stone-500">Noch keine Beiträge veröffentlicht.</p>}
+    <div className="flex flex-col gap-8">
+      <h1 className="text-3xl font-bold text-ink-900">Neuigkeiten</h1>
+      {posts.length === 0 && <p className="text-ink-500">Noch keine Beiträge veröffentlicht.</p>}
       <div className="flex flex-col gap-4">
         {posts.map((post) => (
           <Link
             key={post.id}
             to={`/blog/${post.slug}`}
-            className="rounded-lg border border-stone-200 bg-white p-5 hover:border-amber-600"
+            className="group border-2 border-ink-100 bg-white p-5 transition-colors hover:border-clay-400"
           >
-            <h2 className="mb-1 font-medium text-stone-900">{post.title}</h2>
-            <p className="text-sm text-stone-600">{post.excerpt}</p>
+            <h2 className="mb-1 font-bold text-ink-900 group-hover:text-clay-700">
+              {post.title}
+            </h2>
+            <p className="text-sm text-ink-600">{post.excerpt}</p>
           </Link>
         ))}
       </div>

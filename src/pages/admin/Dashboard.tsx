@@ -25,9 +25,9 @@ export function Dashboard() {
         { label: 'Beiträge', value: stats?.posts },
         { label: 'Produkte', value: stats?.products },
       ].map((stat) => (
-        <div key={stat.label} className="rounded-lg border border-stone-200 bg-white p-6">
-          <p className="text-sm text-stone-500">{stat.label}</p>
-          <p className="text-3xl font-semibold text-stone-900">{stat.value ?? '…'}</p>
+        <div key={stat.label} className="border-2 border-ink-100 bg-white p-6">
+          <p className="text-sm text-ink-600">{stat.label}</p>
+          <p className="text-3xl font-bold text-ink-900">{stat.value ?? '…'}</p>
         </div>
       ))}
     </div>

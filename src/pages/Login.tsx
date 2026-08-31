@@ -28,37 +28,53 @@ export function Login() {
   }
 
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-4">
-      <h1 className="text-2xl font-semibold text-stone-900">Anmelden</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input
-          type="email"
-          required
-          placeholder="E-Mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
-        />
-        <input
-          type="password"
-          required
-          placeholder="Passwort"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
-        />
-        {error && <p className="text-sm text-red-600">{error}</p>}
+    <div className="mx-auto flex max-w-sm flex-col gap-5 border-2 border-ink-100 bg-white p-8">
+      <h1 className="text-2xl font-bold text-ink-900">Anmelden</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="login-email" className="text-sm font-bold text-ink-800">
+            E-Mail
+          </label>
+          <input
+            id="login-email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border-2 border-ink-300 px-3.5 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="login-password" className="text-sm font-bold text-ink-800">
+            Passwort
+          </label>
+          <input
+            id="login-password"
+            type="password"
+            required
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="border-2 border-ink-300 px-3.5 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        {error && (
+          <p role="alert" className="text-sm text-red-700">
+            {error}
+          </p>
+        )}
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+          className="bg-clay-700 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
         >
           {submitting ? 'Meldet an…' : 'Anmelden'}
         </button>
       </form>
-      <p className="text-sm text-stone-600">
+      <p className="text-sm text-ink-700">
         Noch kein Konto?{' '}
-        <Link to="/registrieren" className="text-amber-700 hover:underline">
+        <Link to="/registrieren" className="font-bold text-clay-700 hover:underline">
           Jetzt registrieren
         </Link>
       </p>

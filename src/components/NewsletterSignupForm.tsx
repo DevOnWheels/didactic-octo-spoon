@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useId, useState, type FormEvent } from 'react'
 
 const FUNCTIONS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/subscribe`
 
@@ -8,6 +8,7 @@ export function NewsletterSignupForm() {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState('')
+  const emailId = useId()
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault()
@@ -36,27 +37,42 @@ export function NewsletterSignupForm() {
   }
 
   if (status === 'success') {
-    return <p className="text-sm text-green-700">{message}</p>
+    return (
+      <p role="status" className="font-bold text-glaze-700">
+        {message}
+      </p>
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
+      <label htmlFor={emailId} className="sr-only">
+        E-Mail-Adresse
+      </label>
       <input
+        id={emailId}
         type="email"
         required
         placeholder="deine@email.de"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="flex-1 rounded-md border border-stone-300 px-3 py-2 text-sm focus:border-amber-600 focus:outline-none"
+        className="flex-1 border-2 border-ink-300 bg-white px-4 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
       />
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+        className="bg-clay-700 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
       >
-        {status === 'loading' ? 'Sendet…' : 'Newsletter abonnieren'}
+        {status === 'loading' ? 'Sendet…' : 'Abonnieren'}
       </button>
-      {status === 'error' && <p className="text-sm text-red-600 sm:ml-2 sm:self-center">{message}</p>}
+      <p role="status" className="sr-only">
+        {status === 'loading' ? 'Anmeldung wird gesendet' : ''}
+      </p>
+      {status === 'error' && (
+        <p role="alert" className="text-sm text-red-700 sm:ml-2 sm:self-center">
+          {message}
+        </p>
+      )}
     </form>
   )
 }

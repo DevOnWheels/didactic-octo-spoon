@@ -64,50 +64,68 @@ export function AdminNewsletter() {
 
   return (
     <div className="flex flex-col gap-8">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-lg border border-stone-200 bg-white p-5">
-        <h2 className="font-medium text-stone-900">Newsletter verfassen</h2>
-        <input
-          type="text"
-          required
-          placeholder="Betreff"
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-        />
-        <textarea
-          required
-          placeholder="Inhalt (einfacher HTML-Text erlaubt)"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-          rows={8}
-          className="rounded-md border border-stone-300 px-3 py-2 text-sm"
-        />
-        {error && <p className="text-sm text-red-600">{error}</p>}
-        {message && <p className="text-sm text-green-700">{message}</p>}
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 border-2 border-ink-100 bg-white p-5">
+        <h2 className="font-bold text-ink-900">Newsletter verfassen</h2>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="newsletter-subject" className="text-sm font-bold text-ink-800">
+            Betreff
+          </label>
+          <input
+            id="newsletter-subject"
+            type="text"
+            required
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="newsletter-body" className="text-sm font-bold text-ink-800">
+            Inhalt (einfacher HTML-Text erlaubt)
+          </label>
+          <textarea
+            id="newsletter-body"
+            required
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            rows={8}
+            className="border-2 border-ink-300 px-3 py-2 text-sm focus:border-clay-600 focus:outline-none"
+          />
+        </div>
+        {error && (
+          <p role="alert" className="text-sm text-red-700">
+            {error}
+          </p>
+        )}
+        {message && (
+          <p role="status" className="text-sm font-bold text-glaze-700">
+            {message}
+          </p>
+        )}
         <button
           type="submit"
           disabled={sending}
-          className="self-start rounded-md bg-amber-700 px-4 py-2 text-sm font-medium text-white hover:bg-amber-800 disabled:opacity-60"
+          className="self-start bg-clay-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-clay-800 disabled:opacity-60"
         >
           {sending ? 'Wird versendet…' : 'An alle Abonnenten senden'}
         </button>
       </form>
 
       <div>
-        <h2 className="mb-3 font-medium text-stone-900">Versandhistorie</h2>
+        <h2 className="mb-3 font-bold text-ink-900">Versandhistorie</h2>
         {history.length === 0 ? (
-          <p className="text-stone-500">Noch kein Newsletter versendet.</p>
+          <p className="text-ink-500">Noch kein Newsletter versendet.</p>
         ) : (
-          <div className="flex flex-col divide-y divide-stone-200 rounded-lg border border-stone-200 bg-white">
+          <div className="flex flex-col divide-y divide-ink-100 border-2 border-ink-100 bg-white">
             {history.map((entry) => (
               <div key={entry.id} className="flex items-center justify-between p-4">
                 <div>
-                  <p className="font-medium text-stone-900">{entry.subject}</p>
-                  <p className="text-xs text-stone-500">
+                  <p className="font-bold text-ink-900">{entry.subject}</p>
+                  <p className="text-xs text-ink-500">
                     {entry.sent_at && new Date(entry.sent_at).toLocaleString('de-DE')}
                   </p>
                 </div>
-                <p className="text-sm text-stone-600">{entry.recipient_count} Empfänger</p>
+                <p className="text-sm text-ink-600">{entry.recipient_count} Empfänger</p>
               </div>
             ))}
           </div>

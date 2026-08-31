@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { publicImageUrl } from '../lib/storage'
 import { formatPrice } from '../lib/format'
+import { ImagePlaceholder } from '../components/ImagePlaceholder'
 import type { Product } from '../types/database'
 
 export function Shop() {
@@ -21,12 +22,12 @@ export function Shop() {
       })
   }, [])
 
-  if (loading) return <p className="text-stone-500">Lädt…</p>
+  if (loading) return <p className="text-ink-500">Lädt…</p>
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold text-stone-900">Shop</h1>
-      {products.length === 0 && <p className="text-stone-500">Aktuell sind keine Produkte verfügbar.</p>}
+    <div className="flex flex-col gap-8">
+      <h1 className="text-3xl font-bold text-ink-900">Shop</h1>
+      {products.length === 0 && <p className="text-ink-500">Aktuell sind keine Produkte verfügbar.</p>}
       <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product) => {
           const imageUrl = publicImageUrl(product.image_path)
@@ -34,18 +35,18 @@ export function Shop() {
             <Link
               key={product.id}
               to={`/shop/${product.slug}`}
-              className="flex flex-col overflow-hidden rounded-lg border border-stone-200 bg-white hover:border-amber-600"
+              className="group flex flex-col overflow-hidden border-2 border-ink-100 bg-white transition-colors hover:border-clay-400"
             >
               {imageUrl ? (
                 <img src={imageUrl} alt={product.name} className="aspect-square w-full object-cover" />
               ) : (
-                <div className="flex aspect-square w-full items-center justify-center bg-stone-100 text-stone-400">
-                  Kein Bild
-                </div>
+                <ImagePlaceholder className="aspect-square w-full" />
               )}
               <div className="flex flex-1 flex-col gap-1 p-4">
-                <h2 className="font-medium text-stone-900">{product.name}</h2>
-                <p className="text-sm text-amber-700">{formatPrice(product.price_cents)}</p>
+                <h2 className="font-bold text-ink-900 group-hover:text-clay-700">
+                  {product.name}
+                </h2>
+                <p className="text-sm text-clay-700">{formatPrice(product.price_cents)}</p>
               </div>
             </Link>
           )

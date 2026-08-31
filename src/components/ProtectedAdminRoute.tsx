@@ -8,7 +8,7 @@ export function ProtectedAdminRoute() {
   const { loading, user, isAdmin } = useAuth()
 
   if (loading) {
-    return <div className="p-8 text-center text-stone-500">Lädt…</div>
+    return <div className="p-8 text-center text-ink-500">Lädt…</div>
   }
 
   if (!user || !isAdmin) {

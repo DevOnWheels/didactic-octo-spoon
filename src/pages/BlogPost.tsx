@@ -23,12 +23,12 @@ export function BlogPost() {
       })
   }, [slug])
 
-  if (loading) return <p className="text-stone-500">Lädt…</p>
+  if (loading) return <p className="text-ink-500">Lädt…</p>
   if (!post) {
     return (
       <div>
-        <p className="text-stone-600">Diesen Beitrag gibt es nicht (mehr).</p>
-        <Link to="/blog" className="text-amber-700 hover:underline">
+        <p className="text-ink-600">Diesen Beitrag gibt es nicht (mehr).</p>
+        <Link to="/blog" className="text-clay-700 hover:underline">
           Zurück zu allen Neuigkeiten
         </Link>
       </div>
@@ -39,12 +39,12 @@ export function BlogPost() {
 
   return (
     <article className="flex flex-col gap-4">
-      <Link to="/blog" className="text-sm text-amber-700 hover:underline">
+      <Link to="/blog" className="text-sm text-clay-700 hover:underline">
         &larr; Zurück zu allen Neuigkeiten
       </Link>
-      <h1 className="text-2xl font-semibold text-stone-900">{post.title}</h1>
-      {imageUrl && <img src={imageUrl} alt={post.title} className="rounded-lg" />}
-      <p className="whitespace-pre-line text-stone-700">{post.body}</p>
+      <h1 className="text-3xl font-bold text-ink-900">{post.title}</h1>
+      {imageUrl && <img src={imageUrl} alt={post.title} />}
+      <p className="whitespace-pre-line text-ink-700">{post.body}</p>
     </article>
   )
 }
