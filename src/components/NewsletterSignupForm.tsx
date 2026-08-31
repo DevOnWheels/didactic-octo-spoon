@@ -61,7 +61,7 @@ export function NewsletterSignupForm({ stacked = false }: { stacked?: boolean })
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="bg-clay-400 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
+        className="bg-clay-400 px-5 py-2.5 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500 disabled:opacity-60"
       >
         {status === 'loading' ? 'Sendet…' : 'Abonnieren'}
       </button>

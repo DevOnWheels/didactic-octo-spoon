@@ -29,7 +29,7 @@ export function Login() {
 
   return (
     <div className="mx-4 my-10 flex max-w-sm flex-col gap-5 border-2 border-ink-100 bg-white p-8 sm:mx-auto">
-      <h1 className="text-2xl font-bold text-ink-900">Anmelden</h1>
+      <h1 className="text-3xl font-semibold text-ink-900">Anmelden</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <label htmlFor="login-email" className="text-sm font-bold text-ink-800">
@@ -67,7 +67,7 @@ export function Login() {
         <button
           type="submit"
           disabled={submitting}
-          className="bg-clay-400 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
+          className="bg-clay-400 px-4 py-2.5 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500 disabled:opacity-60"
         >
           {submitting ? 'Meldet an…' : 'Anmelden'}
         </button>

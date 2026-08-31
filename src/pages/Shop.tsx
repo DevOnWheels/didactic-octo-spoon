@@ -26,7 +26,7 @@ export function Shop() {
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10">
-      <h1 className="text-3xl font-bold text-ink-900">Shop</h1>
+      <h1 className="text-4xl font-semibold text-ink-900">Shop</h1>
       {products.length === 0 && <p className="text-ink-500">Aktuell sind keine Produkte verfügbar.</p>}
       <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product) => {
@@ -43,10 +43,10 @@ export function Shop() {
                 <ImagePlaceholder className="aspect-square w-full" />
               )}
               <div className="flex flex-1 flex-col gap-1 p-4">
-                <h2 className="font-bold text-ink-900 group-hover:text-clay-700">
+                <h2 className="text-lg font-semibold text-ink-900 group-hover:text-clay-700">
                   {product.name}
                 </h2>
-                <p className="text-sm text-clay-700">{formatPrice(product.price_cents)}</p>
+                <p className="text-base text-clay-700">{formatPrice(product.price_cents)}</p>
               </div>
             </Link>
           )

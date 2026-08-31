@@ -54,16 +54,16 @@ export function ProductDetail() {
         <Link to="/shop" className="text-sm text-clay-700 hover:underline">
           &larr; Zurück zum Shop
         </Link>
-        <h1 className="text-3xl font-bold text-ink-900">{product.name}</h1>
-        <p className="text-lg text-clay-700">{formatPrice(product.price_cents)}</p>
-        <p className="text-ink-600">{product.description}</p>
+        <h1 className="text-4xl font-semibold text-ink-900">{product.name}</h1>
+        <p className="text-xl text-clay-700">{formatPrice(product.price_cents)}</p>
+        <p className="text-lg font-medium leading-relaxed text-ink-600">{product.description}</p>
         <div className="flex items-center gap-3">
           <button
             onClick={() => {
               addItem(product)
               setAdded(true)
             }}
-            className="bg-clay-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500"
+            className="bg-clay-400 px-6 py-3 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500"
           >
             In den Warenkorb
           </button>

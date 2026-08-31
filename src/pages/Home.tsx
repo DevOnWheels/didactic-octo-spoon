@@ -55,23 +55,23 @@ export function Home() {
       >
         <div aria-hidden="true" className="absolute inset-0 bg-brown-1/60" />
         <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start gap-5 py-20">
-          <h1 className="max-w-2xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl">
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[1.1] tracking-tight text-white sm:text-6xl">
             Handgemachte Keramik aus der Werkstatt am Fluss
           </h1>
-          <p className="max-w-xl text-lg text-ink-100">
+          <p className="max-w-xl text-lg font-medium leading-relaxed text-ink-100">
             Wir drehen, glasieren und brennen jedes Stück von Hand — vom Frühstücksgeschirr bis zur
             Einzelvase. Schau in unserem Shop vorbei oder komm zu einem unserer Töpferkurse.
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Link
               to="/shop"
-              className="bg-clay-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500"
+              className="bg-clay-400 px-6 py-3 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500"
             >
               Zum Shop
             </Link>
             <Link
               to="/blog"
-              className="border-2 border-white px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-ink-900"
+              className="border-2 border-white px-6 py-3 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-white hover:text-ink-900"
             >
               Neuigkeiten lesen
             </Link>
@@ -84,9 +84,9 @@ export function Home() {
       <section className="grid grid-cols-1 sm:grid-cols-3">
         {services.map((service, index) => (
           <div key={service.title} className={`${service.bg} px-8 py-14 sm:px-10`}>
-            <span className="text-3xl font-bold text-clay-400">{String(index + 1).padStart(2, '0')}</span>
-            <h2 className="mt-3 mb-2 text-lg font-bold text-white">{service.title}</h2>
-            <p className="text-sm text-white/80">{service.text}</p>
+            <span className="text-4xl font-semibold text-clay-400">{String(index + 1).padStart(2, '0')}</span>
+            <h2 className="mt-3 mb-2 text-xl font-semibold text-white">{service.title}</h2>
+            <p className="text-base text-white/80">{service.text}</p>
           </div>
         ))}
       </section>
@@ -94,8 +94,8 @@ export function Home() {
       {/* Shop: Überschrift, Einleitung, Trennstrich, dann Produktkarten — 3 pro Zeile. */}
       <section className="mx-auto w-full max-w-6xl px-4 py-20">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-3xl font-bold text-ink-900">Shop</h2>
-          <p className="mt-3 text-ink-700">
+          <h2 className="text-4xl font-semibold text-ink-900">Shop</h2>
+          <p className="mt-3 text-lg font-medium leading-relaxed text-ink-700">
             Handgedrehte Unikate für den Alltag — vom Frühstücksgeschirr bis zur Einzelvase.
           </p>
           <span aria-hidden="true" className="mx-auto mt-6 block h-1 w-16 bg-clay-400" />
@@ -117,8 +117,10 @@ export function Home() {
                     <ImagePlaceholder className="aspect-square w-full" />
                   )}
                   <div className="flex flex-1 flex-col gap-1 p-4">
-                    <h3 className="font-bold text-ink-900 group-hover:text-clay-700">{product.name}</h3>
-                    <p className="text-sm text-clay-700">{formatPrice(product.price_cents)}</p>
+                    <h3 className="text-lg font-semibold text-ink-900 group-hover:text-clay-700">
+                      {product.name}
+                    </h3>
+                    <p className="text-base text-clay-700">{formatPrice(product.price_cents)}</p>
                   </div>
                 </Link>
               )
@@ -132,9 +134,9 @@ export function Home() {
       <section className="w-full bg-brown-1">
         <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 py-20 md:grid-cols-2">
           <div className="flex flex-col items-center text-center">
-            <h2 className="text-3xl font-bold text-white">Newsletter</h2>
+            <h2 className="text-4xl font-semibold text-white">Newsletter</h2>
             <span aria-hidden="true" className="mx-auto mt-4 mb-5 block h-1 w-16 bg-clay-400" />
-            <p className="mb-6 max-w-sm text-white/80">
+            <p className="mb-6 max-w-sm text-lg font-medium leading-relaxed text-white/80">
               Neue Stücke, Markttermine und freie Plätze in Töpferkursen — ein- bis zweimal im Monat.
             </p>
             <div className="w-full max-w-sm">
@@ -143,7 +145,7 @@ export function Home() {
           </div>
 
           <div>
-            <h2 className="text-left text-3xl font-bold text-white">Neuigkeiten</h2>
+            <h2 className="text-left text-4xl font-semibold text-white">Neuigkeiten</h2>
             <span aria-hidden="true" className="mt-4 mb-6 block h-1 w-16 bg-clay-400" />
             <div className="flex flex-col gap-4">
               {posts.map((post) => (
@@ -152,8 +154,10 @@ export function Home() {
                   to={`/blog/${post.slug}`}
                   className="group border-2 border-ink-100 bg-white p-5 transition-colors hover:border-clay-400"
                 >
-                  <h3 className="mb-1 font-bold text-ink-900 group-hover:text-clay-700">{post.title}</h3>
-                  <p className="text-sm text-ink-700">{post.excerpt}</p>
+                  <h3 className="mb-1 text-lg font-semibold text-ink-900 group-hover:text-clay-700">
+                    {post.title}
+                  </h3>
+                  <p className="text-base text-ink-700">{post.excerpt}</p>
                 </Link>
               ))}
             </div>

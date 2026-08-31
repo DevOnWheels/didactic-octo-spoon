@@ -187,7 +187,7 @@ export function AdminPosts() {
           <button
             type="submit"
             disabled={saving}
-            className="self-start bg-clay-400 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-clay-500 disabled:opacity-60"
+            className="self-start bg-clay-400 px-4 py-2 text-sm font-semibold uppercase tracking-[2px] text-white hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500 disabled:opacity-60"
           >
             {saving ? 'Speichert…' : editingId ? 'Änderungen speichern' : 'Beitrag speichern'}
           </button>

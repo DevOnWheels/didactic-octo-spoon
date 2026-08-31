@@ -36,7 +36,7 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10">
-        <h1 className="text-3xl font-bold text-ink-900">Warenkorb</h1>
+        <h1 className="text-4xl font-semibold text-ink-900">Warenkorb</h1>
         <p className="text-ink-600">Dein Warenkorb ist leer.</p>
         <Link to="/shop" className="text-clay-700 hover:underline">
           Zum Shop &rarr;
@@ -47,12 +47,12 @@ export function Cart() {
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10">
-      <h1 className="text-3xl font-bold text-ink-900">Warenkorb</h1>
+      <h1 className="text-4xl font-semibold text-ink-900">Warenkorb</h1>
       <div className="flex flex-col divide-y divide-ink-100 border-2 border-ink-100 bg-white">
         {items.map((item) => (
           <div key={item.product_id} className="flex flex-wrap items-center justify-between gap-4 p-4">
             <div>
-              <p className="font-bold text-ink-900">{item.name}</p>
+              <p className="text-lg font-semibold text-ink-900">{item.name}</p>
               <p className="text-sm text-ink-500">{formatPrice(item.price_cents)} / Stück</p>
             </div>
             <div className="flex items-center gap-3">
@@ -82,8 +82,8 @@ export function Cart() {
       </div>
 
       <div className="flex items-center justify-between border-2 border-ink-100 bg-white p-4">
-        <p className="font-bold text-ink-900">Gesamt</p>
-        <p className="text-lg font-bold text-clay-700">{formatPrice(totalCents)}</p>
+        <p className="text-lg font-semibold text-ink-900">Gesamt</p>
+        <p className="text-xl font-semibold text-clay-700">{formatPrice(totalCents)}</p>
       </div>
 
       {error && (
@@ -95,7 +95,7 @@ export function Cart() {
       <button
         onClick={handleCheckout}
         disabled={submitting}
-        className="self-start bg-clay-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
+        className="self-start bg-clay-400 px-6 py-3 text-sm font-semibold uppercase tracking-[2px] text-white transition-colors hover:bg-clay-500 border-2 border-clay-400 hover:border-clay-500 disabled:opacity-60"
       >
         {submitting ? 'Wird verarbeitet…' : 'Kaufen'}
       </button>

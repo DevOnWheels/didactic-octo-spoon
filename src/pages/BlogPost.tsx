@@ -42,9 +42,11 @@ export function BlogPost() {
       <Link to="/blog" className="text-sm text-clay-700 hover:underline">
         &larr; Zurück zu allen Neuigkeiten
       </Link>
-      <h1 className="text-3xl font-bold text-ink-900">{post.title}</h1>
+      <h1 className="text-4xl font-semibold text-ink-900">{post.title}</h1>
       {imageUrl && <img src={imageUrl} alt={post.title} />}
-      <p className="whitespace-pre-line text-ink-700">{post.body}</p>
+      <p className="whitespace-pre-line text-lg font-medium leading-relaxed text-ink-700">
+        {post.body}
+      </p>
     </article>
   )
 }
