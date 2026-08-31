@@ -42,6 +42,37 @@ Begründung und geprüfte Alternativen: siehe [`CLAUDE.md`](./CLAUDE.md) Abschni
 
 ---
 
+## Design
+
+Das visuelle Design orientiert sich an einer vom Auftraggeber vorgegebenen Referenzseite
+([Elegant Themes „Pottery Studio" Landing Page](https://www.elegantthemes.com/layouts/art-design/pottery-studio-landing-page/live-demo)):
+fotografischer Hero mit dunklem Overlay, kräftige, großzügig beschriftete Buttons, scharfe statt
+runde Ecken, warmer Orangeton als Markenfarbe, dunkler Footer.
+
+- **Schrift**: [Atkinson Hyperlegible](https://fonts.google.com/specimen/Atkinson+Hyperlegible)
+  (Google Fonts) — vom Braille Institute gezielt für Lesbarkeit entwickelt, bewusste
+  Accessibility-Entscheidung statt einer rein ästhetischen Schriftwahl.
+- **Bilder**: Alle Produkt- und Blogfotos sowie das Hero-Bild stammen von
+  [Pexels](https://www.pexels.com) (kostenlose [Pexels-Lizenz](https://www.pexels.com/license/),
+  keine Namensnennung erforderlich, kommerzielle Nutzung erlaubt). Produkt-/Beitragsbilder liegen
+  im Supabase-Storage-Bucket `media` wie alle Admin-Uploads; das Hero-Bild liegt als statisches
+  Asset unter `public/images/hero-pottery.jpg`, da es Teil des Layouts und nicht über das
+  Admin-CMS pflegbar ist.
+- **Farbpalette**: eigene `clay-*`/`ink-*`/`glaze-*`-Skalen in [`src/index.css`](./src/index.css)
+  (Tailwind-v4-`@theme`), keine Tailwind-Standardfarben — alle Text/Hintergrund-Kombinationen
+  wurden gegen WCAG-AA-Kontrast (4.5:1 für normalen Text, 3:1 für großen/fetten Text) geprüft.
+
+### Barrierefreiheit
+
+- „Zum Inhalt springen"-Link (sichtbar bei Tastaturfokus) zum Überspringen der Navigation
+- Sichtbarer, farbstarker Fokusring (`:focus-visible`) statt browserabhängigem Default
+- Formularfelder haben echte `<label>`-Elemente statt nur Placeholder-Text
+- Status- und Fehlermeldungen nutzen `role="status"` / `role="alert"` für Screenreader
+- Alt-Texte für alle Produkt-/Beitragsbilder; rein dekorative Elemente (Hero-Overlay, Trennlinie)
+  sind mit `aria-hidden` versehen
+
+---
+
 ## Setup (frisches Clone → lauffähig)
 
 ### 1. Supabase-Projekt anlegen
