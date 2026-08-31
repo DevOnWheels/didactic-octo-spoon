@@ -44,23 +44,30 @@ Begründung und geprüfte Alternativen: siehe [`CLAUDE.md`](./CLAUDE.md) Abschni
 
 ## Design
 
-Das visuelle Design orientiert sich an einer vom Auftraggeber vorgegebenen Referenzseite
-([Elegant Themes „Pottery Studio" Landing Page](https://www.elegantthemes.com/layouts/art-design/pottery-studio-landing-page/live-demo)):
-fotografischer Hero mit dunklem Overlay, kräftige, großzügig beschriftete Buttons, scharfe statt
-runde Ecken, warmer Orangeton als Markenfarbe, dunkler Footer.
+Das visuelle Design ist ein bewusster Nachbau der einen vom Auftraggeber vorgegebenen Referenzseite
+([Elegant Themes „Pottery Studio" Landing Page](https://www.elegantthemes.com/layouts/art-design/pottery-studio-landing-page/live-demo)) —
+keine anderen Unterseiten dieser Vorlage wurden als Inspiration herangezogen. Farben und
+Schrift-Stack sind exakte, aus der Referenzseite ausgelesene Werte, kein eigenes Redesign:
 
-- **Schrift**: [Atkinson Hyperlegible](https://fonts.google.com/specimen/Atkinson+Hyperlegible)
-  (Google Fonts) — vom Braille Institute gezielt für Lesbarkeit entwickelt, bewusste
-  Accessibility-Entscheidung statt einer rein ästhetischen Schriftwahl.
+- **Schrift**: `Poppins, Helvetica, Arial, sans-serif` — 1:1 der Font-Stack der Referenzseite,
+  eingebunden über Google Fonts.
+- **Farben**: aus den berechneten Stilen der Referenzseite abgelesen — Pfirsich-Akzent für Buttons
+  (`#FDB467`, Hover `#EF8F61`), zwei dunkle Brauntöne für Hintergrundflächen (`#1E1D1C`, `#282624`)
+  sowie ein helles Creme (`#EFE9E4`). Ein dritter Braunton (`#4A4038`) für die dritte
+  Handarbeit/Töpferkurse/Glasuren-Spalte wurde in derselben Farbfamilie abgeleitet, da die
+  Referenzseite selbst nur zwei wirklich dunkle Töne plus das helle Creme nutzt — mit weißer
+  Schrift wäre Creme praktisch unlesbar gewesen, deshalb kommt es an anderer Stelle zum Einsatz.
+  Definiert als `clay-*`/`ink-*`/`brown-*`-Skalen in [`src/index.css`](./src/index.css)
+  (Tailwind-v4-`@theme`).
 - **Bilder**: Alle Produkt- und Blogfotos sowie das Hero-Bild stammen von
   [Pexels](https://www.pexels.com) (kostenlose [Pexels-Lizenz](https://www.pexels.com/license/),
   keine Namensnennung erforderlich, kommerzielle Nutzung erlaubt). Produkt-/Beitragsbilder liegen
   im Supabase-Storage-Bucket `media` wie alle Admin-Uploads; das Hero-Bild liegt als statisches
   Asset unter `public/images/hero-pottery.jpg`, da es Teil des Layouts und nicht über das
   Admin-CMS pflegbar ist.
-- **Farbpalette**: eigene `clay-*`/`ink-*`/`glaze-*`-Skalen in [`src/index.css`](./src/index.css)
-  (Tailwind-v4-`@theme`), keine Tailwind-Standardfarben — alle Text/Hintergrund-Kombinationen
-  wurden gegen WCAG-AA-Kontrast (4.5:1 für normalen Text, 3:1 für großen/fetten Text) geprüft.
+- **Footer**: enthält wie vom Nutzer vorgegeben links „Project by Dev On Wheels | Powered by
+  Claude AI" — Impressum/Datenschutz sind zusätzlich rechts verlinkt (nicht Teil der Vorgabe,
+  aber laut CLAUDE.md §8 für DSGVO-Konformität erforderlich).
 
 ### Barrierefreiheit
 
@@ -70,6 +77,11 @@ runde Ecken, warmer Orangeton als Markenfarbe, dunkler Footer.
 - Status- und Fehlermeldungen nutzen `role="status"` / `role="alert"` für Screenreader
 - Alt-Texte für alle Produkt-/Beitragsbilder; rein dekorative Elemente (Hero-Overlay, Trennlinie)
   sind mit `aria-hidden` versehen
+
+**Bekannte Einschränkung:** Der Pfirsich-Button (weiße Schrift auf `#FDB467`) liegt bei ca. 1,7:1
+Kontrast und unterschreitet damit WCAG AA (4.5:1) — das ist die Referenzseite exakt nachgebaut, wie
+vom Nutzer für die Buttonfarbe explizit gewünscht. Erweiterungspunkt: dunklere Schrift oder
+dunklerer Button-Ton, falls WCAG-AA-Konformität wichtiger als die exakte Referenztreue wird.
 
 ---
 
