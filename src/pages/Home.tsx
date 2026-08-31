@@ -54,7 +54,7 @@ export function Home() {
         style={{ backgroundImage: "url('/images/hero-pottery.jpg')" }}
       >
         <div aria-hidden="true" className="absolute inset-0 bg-brown-1/60" />
-        <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start gap-5 py-20">
+        <div className="relative mx-auto flex w-full max-w-6xl flex-col items-start gap-5 pt-[10%] pb-[10%]">
           <h1 className="max-w-3xl text-5xl font-semibold leading-[1.1] tracking-tight text-white sm:text-6xl">
             Handgemachte Keramik aus der Werkstatt am Fluss
           </h1>
@@ -85,14 +85,14 @@ export function Home() {
         {services.map((service, index) => (
           <div key={service.title} className={`${service.bg} px-8 py-14 sm:px-10`}>
             <span className="text-4xl font-semibold text-clay-400">{String(index + 1).padStart(2, '0')}</span>
-            <h2 className="mt-3 mb-2 text-xl font-semibold text-white">{service.title}</h2>
-            <p className="text-base text-white/80">{service.text}</p>
+            <h2 className="mt-3 mb-2 text-4xl font-semibold text-white">{service.title}</h2>
+            <p className="text-lg text-white/80">{service.text}</p>
           </div>
         ))}
       </section>
 
       {/* Shop: Überschrift, Einleitung, Trennstrich, dann Produktkarten — 3 pro Zeile. */}
-      <section className="mx-auto w-full max-w-6xl px-4 py-20">
+      <section className="mx-auto w-full max-w-6xl py-20">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-4xl font-semibold text-ink-900">Shop</h2>
           <p className="mt-3 text-lg font-medium leading-relaxed text-ink-700">
