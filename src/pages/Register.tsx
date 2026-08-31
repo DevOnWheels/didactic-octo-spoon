@@ -32,14 +32,14 @@ export function Register() {
 
   if (success) {
     return (
-      <p role="status" className="text-ink-700">
+      <p role="status" className="mx-auto max-w-6xl px-4 py-10 text-ink-700">
         Konto erstellt. Du wirst weitergeleitet…
       </p>
     )
   }
 
   return (
-    <div className="mx-auto flex max-w-sm flex-col gap-5 border-2 border-ink-100 bg-white p-8">
+    <div className="mx-4 my-10 flex max-w-sm flex-col gap-5 border-2 border-ink-100 bg-white p-8 sm:mx-auto">
       <h1 className="text-2xl font-bold text-ink-900">Registrieren</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
@@ -93,7 +93,7 @@ export function Register() {
         <button
           type="submit"
           disabled={submitting}
-          className="bg-clay-700 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
+          className="bg-clay-400 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
         >
           {submitting ? 'Erstellt Konto…' : 'Registrieren'}
         </button>

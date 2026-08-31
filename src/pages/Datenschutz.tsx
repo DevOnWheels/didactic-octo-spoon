@@ -1,6 +1,6 @@
 export function Datenschutz() {
   return (
-    <div className="flex flex-col gap-4 text-ink-700">
+    <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-ink-700">
       <h1 className="text-2xl font-bold text-ink-900">Datenschutzerklärung</h1>
       <p className="text-sm text-ink-500">
         Platzhalterinhalt für das Demo-Projekt — vor echtem Betrieb durch eine vollständige,

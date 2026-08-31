@@ -4,7 +4,7 @@ const FUNCTIONS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/subscri
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
-export function NewsletterSignupForm() {
+export function NewsletterSignupForm({ stacked = false }: { stacked?: boolean }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState('')
@@ -38,14 +38,14 @@ export function NewsletterSignupForm() {
 
   if (status === 'success') {
     return (
-      <p role="status" className="font-bold text-glaze-700">
+      <p role="status" className={`font-bold ${stacked ? 'text-green-300' : 'text-green-700'}`}>
         {message}
       </p>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
+    <form onSubmit={handleSubmit} className={`flex flex-col gap-3 ${stacked ? '' : 'sm:flex-row sm:gap-2'}`}>
       <label htmlFor={emailId} className="sr-only">
         E-Mail-Adresse
       </label>
@@ -56,12 +56,12 @@ export function NewsletterSignupForm() {
         placeholder="deine@email.de"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="flex-1 border-2 border-ink-300 bg-white px-4 py-2.5 text-sm focus:border-clay-600 focus:outline-none"
+        className={`border-2 border-ink-300 bg-white px-4 py-2.5 text-sm focus:border-clay-600 focus:outline-none ${stacked ? 'w-full' : 'flex-1'}`}
       />
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="bg-clay-700 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
+        className="bg-clay-400 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
       >
         {status === 'loading' ? 'Sendet…' : 'Abonnieren'}
       </button>
@@ -69,7 +69,10 @@ export function NewsletterSignupForm() {
         {status === 'loading' ? 'Anmeldung wird gesendet' : ''}
       </p>
       {status === 'error' && (
-        <p role="alert" className="text-sm text-red-700 sm:ml-2 sm:self-center">
+        <p
+          role="alert"
+          className={`text-sm ${stacked ? 'text-red-300' : 'text-red-700 sm:ml-2 sm:self-center'}`}
+        >
           {message}
         </p>
       )}

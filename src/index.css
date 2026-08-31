@@ -1,40 +1,38 @@
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  /* Schrift-Stack 1:1 von der Referenzseite übernommen. */
+  --font-sans: "Poppins", Helvetica, Arial, sans-serif;
 
-  /* Warmes Orange als Markenfarbe, angelehnt an das Referenzdesign — Werte so gewählt, dass
-     clay-700 auf Weiß mind. WCAG-AA-Kontrast (4.5:1) für Fließtext/Buttons erreicht. */
-  --color-clay-50: #fff5ea;
-  --color-clay-100: #ffe6c7;
-  --color-clay-200: #ffcb8c;
-  --color-clay-300: #ffab52;
-  --color-clay-400: #fb8c2b;
-  --color-clay-500: #e56f10;
-  --color-clay-600: #c25a09;
-  --color-clay-700: #9c480c;
-  --color-clay-800: #7e3b10;
-  --color-clay-900: #67320f;
+  /* Pfirsich-Akzent — exakte Werte von der Referenzseite abgelesen (Button-Hintergrund
+     rgb(253,180,103) und dessen dunklerer Ton rgb(239,143,97)), dazwischen/darüber interpoliert. */
+  --color-clay-50: #fff3e6;
+  --color-clay-100: #ffe2c2;
+  --color-clay-300: #ffd9b3;
+  --color-clay-400: #fdb467; /* Buttons, exakter Referenzwert */
+  --color-clay-500: #ef8f61; /* Hover/Divider, exakter Referenzwert */
+  --color-clay-600: #d97a4a;
+  --color-clay-700: #b8623a;
+  --color-clay-800: #96502e;
 
-  /* Glasur-Grün als leiser Zweitakzent. */
-  --color-glaze-50: #f3f6ef;
-  --color-glaze-100: #e3ead9;
-  --color-glaze-400: #9bab7f;
-  --color-glaze-600: #6f8452;
-  --color-glaze-700: #59693f;
-
-  /* Warme Neutrale statt reinem Schwarz/Weiß — ink-900 auf Weiß liegt bei ca. 15:1 Kontrast. */
+  /* Neutrale Schrift-/Rahmenfarben für helle Flächen. */
+  --color-ink-900: #20292f; /* Überschriften auf Weiß, exakter Referenzwert */
+  --color-ink-800: #363d42;
+  --color-ink-700: #4b4640;
+  --color-ink-600: #5e564c;
+  --color-ink-500: #746b62;
+  --color-ink-300: #ddd3c9;
+  --color-ink-200: #e8e1d9;
+  --color-ink-100: #efe9e4; /* helles Creme von der Referenzseite */
   --color-ink-50: #faf8f6;
-  --color-ink-100: #f1ede8;
-  --color-ink-200: #e2dbd2;
-  --color-ink-300: #c9beb0;
-  --color-ink-400: #a3937f;
-  --color-ink-500: #7d6c5a;
-  --color-ink-600: #5f5142;
-  --color-ink-700: #493e33;
-  --color-ink-800: #362e26;
-  --color-ink-900: #251f1a;
+
+  /* Drei unterschiedliche Dunkeltöne für die Handarbeit/Töpferkurse/Glasuren-Spalten und den
+     Newsletter/Footer-Bereich — die ersten beiden sind exakte Referenzwerte, der dritte liegt
+     in derselben warmen Braun-Familie. */
+  --color-brown-1: #1e1d1c;
+  --color-brown-2: #282624;
+  --color-brown-3: #4a4038;
 }
 
 body {
@@ -44,6 +42,6 @@ body {
 /* Sichtbarer, kräftiger Fokusring für Tastaturnavigation (WCAG 2.4.7) — ersetzt den
    browserabhängigen Default durch etwas, das auf jedem Hintergrund erkennbar bleibt. */
 :focus-visible {
-  outline: 3px solid var(--color-clay-600);
+  outline: 3px solid var(--color-clay-500);
   outline-offset: 2px;
 }

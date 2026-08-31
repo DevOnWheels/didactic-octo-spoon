@@ -29,10 +29,10 @@ export function ProductDetail() {
       })
   }, [slug])
 
-  if (loading) return <p className="text-ink-500">Lädt…</p>
+  if (loading) return <p className="mx-auto max-w-6xl px-4 py-10 text-ink-500">Lädt…</p>
   if (!product) {
     return (
-      <div>
+      <div className="mx-auto max-w-6xl px-4 py-10">
         <p className="text-ink-600">Dieses Produkt gibt es nicht (mehr).</p>
         <Link to="/shop" className="text-clay-700 hover:underline">
           Zurück zum Shop
@@ -44,7 +44,7 @@ export function ProductDetail() {
   const imageUrl = publicImageUrl(product.image_path)
 
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
+    <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2">
       {imageUrl ? (
         <img src={imageUrl} alt={product.name} />
       ) : (
@@ -63,7 +63,7 @@ export function ProductDetail() {
               addItem(product)
               setAdded(true)
             }}
-            className="bg-clay-700 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800"
+            className="bg-clay-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500"
           >
             In den Warenkorb
           </button>

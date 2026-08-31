@@ -35,7 +35,7 @@ export function Cart() {
 
   if (items.length === 0) {
     return (
-      <div className="flex flex-col gap-3">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10">
         <h1 className="text-3xl font-bold text-ink-900">Warenkorb</h1>
         <p className="text-ink-600">Dein Warenkorb ist leer.</p>
         <Link to="/shop" className="text-clay-700 hover:underline">
@@ -46,7 +46,7 @@ export function Cart() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10">
       <h1 className="text-3xl font-bold text-ink-900">Warenkorb</h1>
       <div className="flex flex-col divide-y divide-ink-100 border-2 border-ink-100 bg-white">
         {items.map((item) => (
@@ -95,7 +95,7 @@ export function Cart() {
       <button
         onClick={handleCheckout}
         disabled={submitting}
-        className="self-start bg-clay-700 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-800 disabled:opacity-60"
+        className="self-start bg-clay-400 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-clay-500 disabled:opacity-60"
       >
         {submitting ? 'Wird verarbeitet…' : 'Kaufen'}
       </button>

@@ -1,17 +1,28 @@
+import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useCart } from '../context/CartContext'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `transition-colors hover:text-clay-700 ${isActive ? 'text-clay-700 font-bold' : 'text-ink-700'}`
+  `transition-colors hover:text-clay-600 ${isActive ? 'text-clay-600 font-bold' : 'text-ink-700'}`
 
 export function Layout() {
   const { user, profile, isAdmin, signOut } = useAuth()
   const { items } = useCart()
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 20)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-ink-900">
+    <div className="flex min-h-screen flex-col overflow-x-hidden bg-white text-ink-900">
       <a
         href="#main-content"
         className="sr-only rounded bg-ink-900 px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"
@@ -19,8 +30,16 @@ export function Layout() {
         Zum Inhalt springen
       </a>
 
-      <header className="sticky top-0 z-10 border-b border-ink-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4">
+      {/* Weißer Hintergrund geht über die volle Fensterbreite, der Inhalt bleibt auf
+          Container-Breite begrenzt. Höhe schrumpft beim Scrollen (transition-all). */}
+      <header
+        className={`sticky top-0 z-10 w-full bg-white transition-shadow ${scrolled ? 'shadow-sm' : ''}`}
+      >
+        <div
+          className={`mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 transition-[padding] duration-200 ${
+            scrolled ? 'py-2' : 'py-5'
+          }`}
+        >
           <Link to="/" className="text-xl font-bold tracking-tight text-ink-900">
             Lehmglück
           </Link>
@@ -43,7 +62,7 @@ export function Layout() {
               </NavLink>
             )}
             {user ? (
-              <button onClick={() => signOut()} className="text-ink-700 transition-colors hover:text-clay-700">
+              <button onClick={() => signOut()} className="text-ink-700 transition-colors hover:text-clay-600">
                 Abmelden ({profile?.display_name ?? '…'})
               </button>
             ) : (
@@ -55,18 +74,19 @@ export function Layout() {
         </div>
       </header>
 
-      <main id="main-content" className="mx-auto w-full max-w-6xl flex-1 px-4 py-10">
+      <main id="main-content" className="flex-1">
         <Outlet />
       </main>
 
-      <footer className="bg-ink-900 text-ink-200">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-8 text-sm sm:flex-row sm:justify-between">
-          <p className="font-bold text-white">&copy; {new Date().getFullYear()} Lehmglück</p>
-          <div className="flex gap-4">
-            <Link to="/impressum" className="transition-colors hover:text-clay-300">
+      {/* Schmale, dunkle Fußzeile über die volle Fensterbreite. */}
+      <footer className="w-full bg-brown-1 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-4 text-sm sm:flex-row sm:justify-between">
+          <p>Project by Dev On Wheels | Powered by Claude AI</p>
+          <div className="flex gap-4 text-ink-300">
+            <Link to="/impressum" className="transition-colors hover:text-clay-400">
               Impressum
             </Link>
-            <Link to="/datenschutz" className="transition-colors hover:text-clay-300">
+            <Link to="/datenschutz" className="transition-colors hover:text-clay-400">
               Datenschutz
             </Link>
           </div>

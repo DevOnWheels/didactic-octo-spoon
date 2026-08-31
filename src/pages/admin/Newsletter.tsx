@@ -98,14 +98,14 @@ export function AdminNewsletter() {
           </p>
         )}
         {message && (
-          <p role="status" className="text-sm font-bold text-glaze-700">
+          <p role="status" className="text-sm font-bold text-green-700">
             {message}
           </p>
         )}
         <button
           type="submit"
           disabled={sending}
-          className="self-start bg-clay-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-clay-800 disabled:opacity-60"
+          className="self-start bg-clay-400 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white hover:bg-clay-500 disabled:opacity-60"
         >
           {sending ? 'Wird versendet…' : 'An alle Abonnenten senden'}
         </button>

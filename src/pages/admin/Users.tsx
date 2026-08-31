@@ -105,7 +105,7 @@ export function AdminUsers() {
         </p>
       )}
       {message && (
-        <p role="status" className="text-sm font-bold text-glaze-700">
+        <p role="status" className="text-sm font-bold text-green-700">
           {message}
         </p>
       )}

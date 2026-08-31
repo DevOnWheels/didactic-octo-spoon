@@ -19,10 +19,10 @@ export function Blog() {
       })
   }, [])
 
-  if (loading) return <p className="text-ink-500">Lädt…</p>
+  if (loading) return <p className="mx-auto max-w-6xl px-4 py-10 text-ink-500">Lädt…</p>
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10">
       <h1 className="text-3xl font-bold text-ink-900">Neuigkeiten</h1>
       {posts.length === 0 && <p className="text-ink-500">Noch keine Beiträge veröffentlicht.</p>}
       <div className="flex flex-col gap-4">

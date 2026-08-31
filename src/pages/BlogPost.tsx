@@ -23,10 +23,10 @@ export function BlogPost() {
       })
   }, [slug])
 
-  if (loading) return <p className="text-ink-500">Lädt…</p>
+  if (loading) return <p className="mx-auto max-w-6xl px-4 py-10 text-ink-500">Lädt…</p>
   if (!post) {
     return (
-      <div>
+      <div className="mx-auto max-w-6xl px-4 py-10">
         <p className="text-ink-600">Diesen Beitrag gibt es nicht (mehr).</p>
         <Link to="/blog" className="text-clay-700 hover:underline">
           Zurück zu allen Neuigkeiten
@@ -38,7 +38,7 @@ export function BlogPost() {
   const imageUrl = publicImageUrl(post.image_path)
 
   return (
-    <article className="flex flex-col gap-4">
+    <article className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10">
       <Link to="/blog" className="text-sm text-clay-700 hover:underline">
         &larr; Zurück zu allen Neuigkeiten
       </Link>
