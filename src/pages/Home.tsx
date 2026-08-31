@@ -10,17 +10,17 @@ import type { Post, Product } from '../types/database'
 const services = [
   {
     title: 'Handarbeit',
-    text: 'Jedes Stück wird einzeln an der Scheibe gedreht — kein Guss, keine Massenware.',
+    text: 'Jedes Stück wird einzeln an der Scheibe gedreht — kein Guss, keine Massenware. Unsere Töpfermeister*innen gestalten alle unserer Produkte mit viel Liebe und Hingabe.',
     bg: 'bg-brown-1',
   },
   {
     title: 'Töpferkurse',
-    text: 'Für Einsteiger und Fortgeschrittene, in kleinen Gruppen von bis zu sechs Personen.',
+    text: 'Für Einsteiger und Fortgeschrittene, in kleinen Gruppen von bis zu sechs Personen. Bitte rufen Sie uns bei Interesse an und wir machen Ihnen ein Angebot - ganz nach Ihren Wünschen.',
     bg: 'bg-brown-2',
   },
   {
     title: 'Regionale Glasuren',
-    text: 'Wir mischen unsere Glasuren selbst und brennen im eigenen Elektroofen.',
+    text: 'Wir mischen unsere Glasuren selbst und brennen im eigenen Elektroofen. Wenn möglich versuchen wir die Rohstoffe für die Glasuren lokal zu beziehen: Eisen, Chrom oder Kupfer.',
     bg: 'bg-brown-3',
   },
 ]
@@ -83,7 +83,7 @@ export function Home() {
           drei unterschiedliche Brauntöne von der Referenzseite. */}
       <section className="grid grid-cols-1 sm:grid-cols-3">
         {services.map((service, index) => (
-          <div key={service.title} className={`${service.bg} px-8 py-14 sm:px-10`}>
+          <div key={service.title} className={`${service.bg} pt-[20%] pb-[20%] px-[15%]`}>
             <span className="text-4xl font-semibold text-clay-400">{String(index + 1).padStart(2, '0')}</span>
             <h2 className="mt-3 mb-2 text-4xl font-semibold text-white">{service.title}</h2>
             <p className="text-lg text-white/80">{service.text}</p>
