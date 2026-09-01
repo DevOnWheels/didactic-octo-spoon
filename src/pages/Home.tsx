@@ -83,7 +83,7 @@ export function Home() {
           drei unterschiedliche Brauntöne von der Referenzseite. */}
       <section className="grid grid-cols-1 sm:grid-cols-3">
         {services.map((service, index) => (
-          <div key={service.title} className={`${service.bg} pt-[20%] pb-[20%] px-[15%]`}>
+          <div key={service.title} className={`${service.bg} px-4 pt-[20%] pb-[20%] sm:px-[15%]`}>
             <span className="text-4xl font-semibold text-clay-400">{String(index + 1).padStart(2, '0')}</span>
             <h2 className="mt-3 mb-2 text-4xl font-semibold text-white">{service.title}</h2>
             <p className="text-lg text-white/80">{service.text}</p>
@@ -91,8 +91,49 @@ export function Home() {
         ))}
       </section>
 
+      {/* Über uns: volle Fensterbreite wie "Workshops & Guest Artists" auf der Vorlage —
+          Text links (1/3, Hintergrund exakt wie Vorlage: #efe9e4), Bild rechts (2/3). */}
+      <section className="grid grid-cols-1 md:grid-cols-[45%_55%]">
+        <div className="order-1 flex flex-col justify-center bg-ink-100 px-4 pt-[20%] pb-[20%] sm:px-[15%] md:order-none">
+          <h2 className="text-4xl font-semibold text-ink-900">Über uns</h2>
+          <span aria-hidden="true" className="mt-4 mb-5 block h-1 w-16 bg-clay-400" />
+          <p className="text-lg font-medium leading-relaxed text-ink-700">
+            Die Keramikwerkstatt Lehmglück liegt direkt am Fluss, mitten in der Altstadt. Seit über
+            zehn Jahren drehen, glasieren und brennen wir hier Geschirr und Einzelstücke von Hand —
+            jedes Stück trägt die kleinen Unregelmäßigkeiten, die es einzigartig machen. Wer mag,
+            schaut uns gerne über die Schulter oder nimmt selbst an der Scheibe Platz.
+          </p>
+        </div>
+        <div
+          role="img"
+          aria-label="Töpfer bei der Arbeit in der Werkstatt, umgeben von Regalen mit bunt bemalten Tassen"
+          className="order-2 aspect-[4/3] bg-cover bg-center md:order-none md:aspect-auto"
+          style={{ backgroundImage: "url('/images/ueber-uns.jpg')" }}
+        />
+      </section>
+
+      {/* Gastkünstler: volle Fensterbreite wie "Private & Group Events" auf der Vorlage —
+          Bild links (2/3), Text rechts (1/3, Hintergrund exakt wie Vorlage: dunkles Braun #282624). */}
+      <section className="grid grid-cols-1 md:grid-cols-[55%_45%]">
+        <div
+          role="img"
+          aria-label="Mehrere Töpfer*innen arbeiten gemeinsam an der Drehscheibe und formen Gefäße aus Ton"
+          className="order-2 aspect-[4/3] bg-cover bg-center md:order-none md:aspect-auto"
+          style={{ backgroundImage: "url('/images/gastkuenstler.jpg')" }}
+        />
+        <div className="order-1 flex flex-col justify-center bg-brown-2 px-4 pt-[20%] pb-[20%] sm:px-[15%] md:order-none">
+          <h2 className="text-4xl font-semibold text-white">Gastkünstler</h2>
+          <span aria-hidden="true" className="mt-4 mb-5 block h-1 w-16 bg-clay-400" />
+          <p className="text-lg font-medium leading-relaxed text-white/80">
+            Immer wieder laden wir renommierte Töpfermeister*innen zu uns in die Werkstatt ein. Bei
+            offenen Ateliertagen und kleinen Workshops geben sie Einblick in ihre Technik und
+            bringen neue Impulse in unser Handwerk — von der Drehscheibe bis zur Glasurmischung.
+          </p>
+        </div>
+      </section>
+
       {/* Shop: Überschrift, Einleitung, Trennstrich, dann Produktkarten — 3 pro Zeile. */}
-      <section className="mx-auto w-full max-w-6xl py-20">
+      <section className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-0">
         <div className="mx-auto max-w-xl text-center">
           <h2 className="text-4xl font-semibold text-ink-900">Shop</h2>
           <p className="mt-3 text-lg font-medium leading-relaxed text-ink-700">

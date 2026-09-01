@@ -36,7 +36,7 @@ export function Layout() {
         className={`sticky top-0 z-10 w-full bg-white transition-shadow ${scrolled ? 'shadow-sm' : ''}`}
       >
         <div
-          className={`mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 transition-[padding] duration-200 ${
+          className={`mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 transition-[padding] duration-200 sm:px-0 ${
             scrolled ? 'py-2' : 'py-5'
           }`}
         >
@@ -80,7 +80,7 @@ export function Layout() {
 
       {/* Schmale, dunkle Fußzeile über die volle Fensterbreite. */}
       <footer className="w-full bg-brown-1 text-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 py-4 text-sm sm:flex-row sm:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-4 text-sm sm:flex-row sm:justify-between sm:px-0">
           <p>Project by Dev On Wheels | Powered by Claude AI</p>
           <div className="flex gap-4 text-ink-300">
             <Link to="/impressum" className="transition-colors hover:text-clay-400">
